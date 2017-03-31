@@ -1,3 +1,35 @@
+Add an easier way to use tinyxml2 to construct xml document same as std::map.
+
+How to use.
+-------------
+
+	#include "tinyxml2++.h"
+	int main(int argc, char* argv[])
+	{
+		tinyxml2::XMLPPDocument doc("1.0","utf-8");
+
+		doc["root"]["name"] = "archer";
+		doc["root"]["age"] = 10;
+		doc["root"]["info"]["tel"] = "1000229";
+
+		cout << (const char*)doc << endl;
+
+		return 0;
+	}
+	
+	output :
+	<?xml version="1.0" encoding="utf-8"?>
+	<root>
+		<name>archer</name>
+		<age>10</age>
+		<info>
+			<tel>1000229</tel>
+		</info>
+	</root>
+
+
+
+
 TinyXML-2 [![TravisCI Status](https://travis-ci.org/leethomason/tinyxml2.svg?branch=master)](https://travis-ci.org/leethomason/tinyxml2) [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/leethomason/tinyxml2?branch=master&svg=true)](https://ci.appveyor.com/project/leethomason/tinyxml2)
 =========
 ![TinyXML-2 Logo](http://www.grinninglizard.com/tinyxml2/TinyXML2_small.png)
