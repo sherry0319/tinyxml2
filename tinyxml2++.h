@@ -97,11 +97,15 @@ namespace tinyxml2
 		//Look up a child element from this node which named "key"
 		XMLPPNode* GetElement(const char* key);
 	public:
-		//Set value to this child node
+		//Set/add value to this child node
 		void SetValue(const char* value);
 
-		//Set attribute to this child node;
-		void SetAttribute(const char* name, const char* value);
+		//Set/add an attribute to this child node;
+		template<typename T>
+		void SetAttribute(const char* name, T value)
+		{
+			m_pCurElement->SetAttribute(name, value);
+		}
 
 		//Set comment to this child node;
 		void SetComment(const char* comment);
@@ -111,6 +115,9 @@ namespace tinyxml2
 
 		//query key name of this element
 		const char* GetName();
+
+		//query an attribute of this element
+		const char* GetAttribute(const char* name);
 
 		/*
 			append a node to this element.this for array in xml

@@ -223,11 +223,6 @@ namespace tinyxml2
 		m_pCurElement->SetText(value);
 	}
 
-	void XMLPPNode::SetAttribute(const char* name, const char* value)
-	{
-		m_pCurElement->SetAttribute(name, value);
-	}
-
 	void XMLPPNode::SetComment(const char* comment)
 	{
 		m_pCurElement->LinkEndChild(m_doc.NewComment(comment));
@@ -241,6 +236,16 @@ namespace tinyxml2
 	const char* XMLPPNode::GetName()
 	{
 		return m_pCurElement->Value();
+	}
+
+	const char* XMLPPNode::GetAttribute(const char* name)
+	{
+		const tinyxml2::XMLAttribute* pAttribute = (const_cast<const tinyxml2::XMLElement*>(m_pCurElement))->FindAttribute(name);
+		if (pAttribute)
+		{
+			return pAttribute->Value();
+		}
+		return NULL;
 	}
 
 	XMLPPNode& XMLPPNode::Append(const char* key)
